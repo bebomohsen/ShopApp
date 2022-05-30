@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopappclone/components/category_card.dart';
 import 'package:shopappclone/components/header_home_view.dart';
 import 'package:shopappclone/components/icon_button_with_background.dart';
 
@@ -10,6 +11,8 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  List<bool> isSelected = [false, false, false, false, false];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +24,7 @@ class _HomeViewState extends State<HomeView> {
             SizedBox(
               height: 20,
             ),
+
             /// Search bar
             SizedBox(
               height: 50,
@@ -49,7 +53,28 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
+
             /// slider card
+            SizedBox(
+              height: 120,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: categoryList.length,
+                itemBuilder: (context, index) {
+                  return FittedBox(
+                      child: CategoryCard(name: categoryList[index]['name']!,url: categoryList[index]['url']!,
+                    onTap: () {
+                      print('hi ${categoryList.length}');
+                      setState(() {
+                        isSelected = [false, false, false, false, false];
+                        isSelected[index] = true;
+                      });
+                    },
+                    isSelcted: isSelected[index],
+                  ));
+                },
+              ),
+            )
           ],
         ),
       ),
