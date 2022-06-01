@@ -20,6 +20,7 @@ class _HomeViewState extends State<HomeView> {
         padding: EdgeInsets.only(top: 40, bottom: 10, right: 10, left: 10),
         child: Column(
           children: [
+            /// header
             HeaderHomeView(),
             SizedBox(
               height: 20,
@@ -62,7 +63,9 @@ class _HomeViewState extends State<HomeView> {
                 itemCount: categoryList.length,
                 itemBuilder: (context, index) {
                   return FittedBox(
-                      child: CategoryCard(name: categoryList[index]['name']!,url: categoryList[index]['url']!,
+                      child: CategoryCard(
+                    name: categoryList[index]['name']!,
+                    url: categoryList[index]['url']!,
                     onTap: () {
                       print('hi ${categoryList.length}');
                       setState(() {
@@ -73,6 +76,55 @@ class _HomeViewState extends State<HomeView> {
                     isSelcted: isSelected[index],
                   ));
                 },
+              ),
+            ),
+
+            /// items grid
+            SizedBox(
+              width: 150,
+              height: 200,
+              child: Card(
+                color: Colors.white,
+                elevation: 7,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: FittedBox(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Icon(
+                            Icons.favorite_border,
+                          ),
+                        ),
+                        FittedBox(
+                          child: Center(
+                            child: Image.network(
+                                'https://cdn-icons-png.flaticon.com/128/4264/4264598.png',width: 150,height: 150,),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Lemon',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 18),
+                              ),
+                              Text(
+                                'orignal italy',
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             )
           ],
