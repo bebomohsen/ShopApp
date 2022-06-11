@@ -78,14 +78,48 @@ List<ItemModel> fruitItems = [
   ),
   ItemModel(
     isFavorite: true,
-    price: 3,
+    price: 5.5,
     name: 'Apple',
     description: 'Original Nature',
-    url: 'https://cdn-icons-png.flaticon.com/128/2909/2909877.png',
+    url: 'https://cdn-icons-png.flaticon.com/128/415/415733.png',
     discount: 17,
+  ),
+];
+List<ItemModel> bakeryItems = [
+  ItemModel(
+    price: 1,
+    name: 'Bread',
+    description: 'New Arrival',
+    url: 'https://cdn-icons-png.flaticon.com/128/4241/4241664.png',
+    discount: 0,
+  ),
+  ItemModel(
+    price: 2.5,
+    name: 'Toast',
+    description: 'New Arrival',
+    url: 'https://cdn-icons-png.flaticon.com/128/3348/3348093.png',
+    discount: 0,
+  ),
+];
+List<ItemModel> milkItems = [
+  ItemModel(
+    price: 17,
+    name: 'Milk',
+    description: 'small bottle 400g',
+    url: 'https://cdn-icons-png.flaticon.com/128/684/684631.png',
+    discount: 3,
+  ),
+  ItemModel(
+    price: 30,
+    name: 'Milk',
+    description: 'Large Packet of 1L',
+    url: 'https://cdn-icons-png.flaticon.com/128/3982/3982755.png',
+    discount: 0,
   ),
 ];
 Map<CategoryEnum, List<ItemModel>> items = {
   CategoryEnum.vegetables: vegetablesItems,
-  CategoryEnum.fruits: fruitItems
+  CategoryEnum.fruits: fruitItems,
+  CategoryEnum.bakery: bakeryItems,
+  CategoryEnum.milk: milkItems,
 };
