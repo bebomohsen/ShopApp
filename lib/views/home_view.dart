@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shopappclone/components/category_card.dart';
 import 'package:shopappclone/components/header_home_view.dart';
 import 'package:shopappclone/components/icon_button_with_background.dart';
+import 'package:shopappclone/components/item_card.dart';
+import 'package:shopappclone/model/item_model.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -54,6 +56,9 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
 
             /// slider card
             SizedBox(
@@ -78,55 +83,33 @@ class _HomeViewState extends State<HomeView> {
                 },
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
 
             /// items grid
-            SizedBox(
-              width: 150,
-              height: 200,
-              child: Card(
-                color: Colors.white,
-                elevation: 7,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FittedBox(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Icon(
-                            Icons.favorite_border,
-                          ),
-                        ),
-                        FittedBox(
-                          child: Center(
-                            child: Image.network(
-                                'https://cdn-icons-png.flaticon.com/128/4264/4264598.png',width: 150,height: 150,),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Lemon',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
-                              ),
-                              Text(
-                                'orignal italy',
-                                style: TextStyle(fontSize: 14),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            )
+            Expanded(
+              child: GridView.builder(
+                  padding: EdgeInsets.zero,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent:
+                          (MediaQuery.of(context).size.width / 2),
+                      childAspectRatio: .6,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10),
+                  itemCount: vegetablesItems.length,
+                  itemBuilder: (BuildContext ctx, index) {
+                    return ItemCard(
+                      plusOnTap: () {},
+                      item: vegetablesItems[index],
+                      favOnTab: () {
+                        vegetablesItems[index].isFavorite =
+                            !vegetablesItems[index].isFavorite;
+                        setState(() {});
+                      },
+                    );
+                  }),
+            ),
           ],
         ),
       ),
