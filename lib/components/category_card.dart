@@ -1,23 +1,5 @@
 import 'package:flutter/material.dart';
-
-List<Map<String, String>> categoryList = [
-  {
-    'name': 'Bakery',
-    'url': 'https://cdn-icons-png.flaticon.com/512/3014/3014466.png'
-  },
-  {
-    'name': 'Fruits',
-    'url': 'https://cdn-icons-png.flaticon.com/128/3081/3081887.png'
-  },
-  {
-    'name': 'Vegetables',
-    'url': 'https://cdn-icons-png.flaticon.com/128/2329/2329903.png'
-  },
-  {
-    'name': 'Milk',
-    'url': 'https://cdn-icons-png.flaticon.com/128/3500/3500274.png'
-  },
-];
+import 'package:shopappclone/enums/category_enum.dart';
 
 class CategoryCard extends StatefulWidget {
   CategoryCard(
@@ -29,7 +11,8 @@ class CategoryCard extends StatefulWidget {
       : super(key: key);
   bool isSelcted;
   final GestureTapCallback? onTap;
-  final String url, name;
+  final String url;
+  final CategoryEnum name;
 
   Color color = Colors.white;
 
@@ -64,7 +47,7 @@ class _CategoryCardState extends State<CategoryCard> {
         SizedBox(
           height: 5,
         ),
-        Text(widget.name),
+        Text(widget.name.name),
       ],
     );
   }

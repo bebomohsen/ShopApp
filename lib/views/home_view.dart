@@ -3,6 +3,8 @@ import 'package:shopappclone/components/category_card.dart';
 import 'package:shopappclone/components/header_home_view.dart';
 import 'package:shopappclone/components/icon_button_with_background.dart';
 import 'package:shopappclone/components/item_card.dart';
+import 'package:shopappclone/enums/category_enum.dart';
+import 'package:shopappclone/model/category_model.dart';
 import 'package:shopappclone/model/item_model.dart';
 
 class HomeView extends StatefulWidget {
@@ -13,7 +15,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  List<bool> isSelected = [false, false, false, false, false];
+  CategoryEnum categorySelected = CategoryEnum.vegetables;
 
   @override
   Widget build(BuildContext context) {
@@ -69,16 +71,15 @@ class _HomeViewState extends State<HomeView> {
                 itemBuilder: (context, index) {
                   return FittedBox(
                       child: CategoryCard(
-                    name: categoryList[index]['name']!,
-                    url: categoryList[index]['url']!,
+                    name: categoryList[index].name,
+                    url: categoryList[index].url,
                     onTap: () {
                       print('hi ${categoryList.length}');
                       setState(() {
-                        isSelected = [false, false, false, false, false];
-                        isSelected[index] = true;
+                        categorySelected = categoryList[index].name;
                       });
                     },
-                    isSelcted: isSelected[index],
+                    isSelcted: categorySelected == categoryList[index].name,
                   ));
                 },
               ),
@@ -97,14 +98,14 @@ class _HomeViewState extends State<HomeView> {
                       childAspectRatio: .6,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10),
-                  itemCount: vegetablesItems.length,
+                  itemCount: items[categorySelected]!.length,
                   itemBuilder: (BuildContext ctx, index) {
                     return ItemCard(
                       plusOnTap: () {},
-                      item: vegetablesItems[index],
+                      item: items[categorySelected]![index],
                       favOnTab: () {
-                        vegetablesItems[index].isFavorite =
-                            !vegetablesItems[index].isFavorite;
+                        items[categorySelected]![index].isFavorite =
+                            !items[categorySelected]![index].isFavorite;
                         setState(() {});
                       },
                     );
